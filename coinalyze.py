@@ -1,5 +1,5 @@
 import time
-# import do_not_share
+import do_not_share
 import json
 import hmac
 import hashlib
@@ -12,11 +12,11 @@ import numpy as np
 # import plotly.graph_objects as go
 # from plotly.subplots import make_subplots
 
-API_KEY = '40ffcece-0621-44a8-9eba-30fadc12f156'
+
 
 PATH = '/v1/open-interest-history'
 headers = {
-    'X-MBX-APIKEY': API_KEY
+    'X-MBX-APIKEY': do_not_share.API_KEY
 }
 
 

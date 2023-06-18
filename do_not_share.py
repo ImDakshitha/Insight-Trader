@@ -1,1 +1,0 @@
-API_KEY = '40ffcece-0621-44a8-9eba-30fadc12f156'
