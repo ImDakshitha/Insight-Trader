@@ -1,4 +1,5 @@
 import time
+import os
 import do_not_share
 import json
 import hmac
@@ -15,6 +16,7 @@ import numpy as np
 
 
 PATH = '/v1/open-interest-history'
+pathtocsv='D:\\Backtesting\\Coinalyze\\Collected Data'
 headers = {
     'X-MBX-APIKEY': do_not_share.API_KEY
 }
@@ -75,11 +77,12 @@ df_merged2=df_merged.merge(funding_data, how='outer',left_index=True, right_inde
 df_merged3=df_merged2.merge(liquidation_data, how='outer',left_index=True, right_index=True).fillna('0')
 
 
-
-
+# adding the datetime as index of the dataframe
 df_merged3.index = pd.to_datetime(df_merged3.index, unit='s')
-file_name=str(f"{symbol} Futures data from {st.strftime('%Y-%m-%d %H.%M.%S')} to {et.strftime('%Y-%m-%d %H.%M.%S')}")
-df_merged3.to_csv(file_name+'.csv', sep=',', index=True)
+file_name=str(f"{symbol} Futures data from {st.strftime('%Y-%m-%d %H.%M.%S')} to {et.strftime('%Y-%m-%d %H.%M.%S')}.csv")
+
+##csv file saving to a specfic path
+df_merged3.to_csv(os.path.join(pathtocsv,file_name))
 
 #print(exchangeslist)
 # print(BTCmarkets)
