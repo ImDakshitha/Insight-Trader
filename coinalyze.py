@@ -24,19 +24,19 @@ headers = {
 BASE_URL = 'https://api.coinalyze.net'
 symbol= "BTCUSDT_PERP.A"
 interval="1min"
-st=(datetime.datetime(2023, 6, 16, 0, 0))
-et=(datetime.datetime(2023, 6, 17, 0, 0))
+st=(datetime.datetime(2023, 6, 17, 0, 0))
+et=(datetime.datetime(2023, 6, 18, 0, 0))
 startTime=str(int(st.timestamp()))
 endTime=str(int(et.timestamp()))
-print(datetime.datetime(2023, 6, 16, 0, 0))
 
 
-exchanges=requests.get(' https://api.coinalyze.net/v1/exchanges',headers={'api_key': API_KEY})
-markets=requests.get(' https://api.coinalyze.net/v1/future-markets',headers={'api_key': API_KEY})
-oi=requests.get(f"https://api.coinalyze.net/v1/open-interest-history?symbols={symbol}&interval={interval}&from={startTime}&to={endTime}",headers={'api_key': API_KEY})
-funding=requests.get(f"https://api.coinalyze.net/v1/predicted-funding-rate-history?symbols={symbol}&interval={interval}&from={startTime}&to={endTime}",headers={'api_key': API_KEY})
-ohlc=requests.get(f"https://api.coinalyze.net/v1/ohlcv-history?symbols={symbol}&interval={interval}&from={startTime}&to={endTime}",headers={'api_key': API_KEY})
-liquidation=requests.get(f"https://api.coinalyze.net/v1/liquidation-history?symbols={symbol}&interval={interval}&from={startTime}&to={endTime}",headers={'api_key': API_KEY})
+
+exchanges=requests.get(' https://api.coinalyze.net/v1/exchanges',headers={'api_key': do_not_share.API_KEY})
+markets=requests.get(' https://api.coinalyze.net/v1/future-markets',headers={'api_key': do_not_share.API_KEY})
+oi=requests.get(f"https://api.coinalyze.net/v1/open-interest-history?symbols={symbol}&interval={interval}&from={startTime}&to={endTime}",headers={'api_key': do_not_share.API_KEY})
+funding=requests.get(f"https://api.coinalyze.net/v1/predicted-funding-rate-history?symbols={symbol}&interval={interval}&from={startTime}&to={endTime}",headers={'api_key': do_not_share.API_KEY})
+ohlc=requests.get(f"https://api.coinalyze.net/v1/ohlcv-history?symbols={symbol}&interval={interval}&from={startTime}&to={endTime}",headers={'api_key': do_not_share.API_KEY})
+liquidation=requests.get(f"https://api.coinalyze.net/v1/liquidation-history?symbols={symbol}&interval={interval}&from={startTime}&to={endTime}",headers={'api_key': do_not_share.API_KEY})
 
 fundinghistory=funding.json()
 exchangeslist=exchanges.json()
@@ -78,7 +78,7 @@ df_merged3=df_merged2.merge(liquidation_data, how='outer',left_index=True, right
 
 
 df_merged3.index = pd.to_datetime(df_merged3.index, unit='s')
-file_name=str(f"{symbol} Futures data from {st}to{et}")
+file_name=str(f"{symbol} Futures data from {st.strftime('%Y-%m-%d %H.%M.%S')} to {et.strftime('%Y-%m-%d %H.%M.%S')}")
 df_merged3.to_csv(file_name+'.csv', sep=',', index=True)
 
 #print(exchangeslist)
