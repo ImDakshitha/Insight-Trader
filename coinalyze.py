@@ -1,5 +1,5 @@
 import time
-import do_not_share
+# import do_not_share
 import json
 import hmac
 import hashlib
@@ -9,8 +9,8 @@ from urllib.parse import urljoin, urlencode
 import datetime
 import pprint
 import numpy as np
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
+# import plotly.graph_objects as go
+# from plotly.subplots import make_subplots
 
 API_KEY = '40ffcece-0621-44a8-9eba-30fadc12f156'
 
@@ -24,10 +24,11 @@ headers = {
 BASE_URL = 'https://api.coinalyze.net'
 symbol= "BTCUSDT_PERP.A"
 interval="1min"
-startTime=str(int(datetime.datetime(2023, 5, 13, 22, 0).timestamp()))
-endTime=str(int(datetime.datetime(2023, 5, 14, 0, 0).timestamp()))
-
-
+st=(datetime.datetime(2023, 6, 16, 0, 0))
+et=(datetime.datetime(2023, 6, 17, 0, 0))
+startTime=str(int(st.timestamp()))
+endTime=str(int(et.timestamp()))
+print(datetime.datetime(2023, 6, 16, 0, 0))
 
 
 exchanges=requests.get(' https://api.coinalyze.net/v1/exchanges',headers={'api_key': API_KEY})
@@ -77,7 +78,7 @@ df_merged3=df_merged2.merge(liquidation_data, how='outer',left_index=True, right
 
 
 df_merged3.index = pd.to_datetime(df_merged3.index, unit='s')
-file_name=str(f"{symbol} Futures data from {startTime}to{endTime}")
+file_name=str(f"{symbol} Futures data from {st}to{et}")
 df_merged3.to_csv(file_name+'.csv', sep=',', index=True)
 
 #print(exchangeslist)
@@ -86,24 +87,24 @@ df_merged3.to_csv(file_name+'.csv', sep=',', index=True)
 #     if d['name']=="Binance":
 #         print(d)
 ##pprint.pprint(BTCmarkets)
-fig = make_subplots(rows=2, cols=1,shared_xaxes=True,vertical_spacing=0.02)
+# fig = make_subplots(rows=2, cols=1,shared_xaxes=True,vertical_spacing=0.02)
 
-fig.add_trace(go.Candlestick(x=df_merged3.index,
-                             open=df_merged3['OIOpen'],
-                             high=df_merged3['OIHigh'],
-                             low=df_merged3['OILow'],
-                             close=df_merged3['OIClose']),
-                             row=2,col=1)
+# fig.add_trace(go.Candlestick(x=df_merged3.index,
+#                              open=df_merged3['OIOpen'],
+#                              high=df_merged3['OIHigh'],
+#                              low=df_merged3['OILow'],
+#                              close=df_merged3['OIClose']),
+#                              row=2,col=1)
 
-fig.add_trace(go.Candlestick(x=df_merged3.index,
-            open=df_merged3['open'],
-            high=df_merged3['high'],
-            low=df_merged3['low'],
-            close=df_merged3['close']),
-            row=1,col=1,
-            )
+# fig.add_trace(go.Candlestick(x=df_merged3.index,
+#             open=df_merged3['open'],
+#             high=df_merged3['high'],
+#             low=df_merged3['low'],
+#             close=df_merged3['close']),
+#             row=1,col=1,
+#             )
 
-# fig.append_trace(go.Scatter(x=oi_data["timestamp"], y=df_merged3["high"]*oi_data["Increase"],    mode='markers', marker_symbol='triangle-up',marker_color='green', marker_size=12),row=1,col=1)
-fig.update_xaxes(row=1, col=1, rangeslider_visible=False)
-fig.update_layout(height=800, width=1200,title_text="Open Interest with Price")
-fig.show()
+# # fig.append_trace(go.Scatter(x=oi_data["timestamp"], y=df_merged3["high"]*oi_data["Increase"],    mode='markers', marker_symbol='triangle-up',marker_color='green', marker_size=12),row=1,col=1)
+# fig.update_xaxes(row=1, col=1, rangeslider_visible=False)
+# fig.update_layout(height=800, width=1200,title_text="Open Interest with Price")
+# fig.show()
