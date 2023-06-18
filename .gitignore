@@ -1,2 +1,4 @@
 coinalyzeEnv/
+coinalyzeEnv/Scripts
 do_not_share.py
+__pycache__/
