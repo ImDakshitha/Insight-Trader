@@ -16,7 +16,7 @@ import numpy as np
 
 PATH = '/v1/open-interest-history'
 
-# puth the path you want to save the csv in your computer
+# put the path you want to save the csv in your computer
 
 pathtocsv='D:\\Codes\\Backtesting\\Coinalyze\\Collected Data'
 
