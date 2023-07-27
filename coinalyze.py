@@ -10,13 +10,17 @@ from urllib.parse import urljoin, urlencode
 import datetime
 import pprint
 import numpy as np
-# import plotly.graph_objects as go
-# from plotly.subplots import make_subplots
+
 
 
 
 PATH = '/v1/open-interest-history'
-pathtocsv='D:\\Backtesting\\Coinalyze\\Collected Data'
+
+# puth the path you want to save the csv in your computer
+
+pathtocsv='D:\\Codes\\Backtesting\\Coinalyze\\Collected Data'
+
+# save your coinalyze api key at a separate do_not_share.py file
 headers = {
     'X-MBX-APIKEY': do_not_share.API_KEY
 }
@@ -24,10 +28,16 @@ headers = {
 
 
 BASE_URL = 'https://api.coinalyze.net'
+
+# this grabs the futures data from BTCUSDT_PERP.A
 symbol= "BTCUSDT_PERP.A"
-interval="1min"
+# change if you want a data in a different time interval 
+interval="5min"
+# ***** coinalyze holds only the last 30 days data****
+# so this st and et shold be within one month from the date execute this code
 st=(datetime.datetime(2023, 6, 17, 0, 0))
-et=(datetime.datetime(2023, 6, 18, 0, 0))
+et=(datetime.datetime(2023, 7, 16, 0, 0))
+
 startTime=str(int(st.timestamp()))
 endTime=str(int(et.timestamp()))
 
@@ -65,8 +75,6 @@ oi_data=oi_data.set_index('t')
 ohlc_data=ohlc_data.set_index('t')
 funding_data=funding_data.set_index('t')
 liquidation_data=liquidation_data.set_index('t')
-
-print(ohlc_data)
 
 oi_data.columns=['OIOpen','OIHigh','OILow','OIClose']
 ohlc_data.columns=['open','high','low','close','Volume','bv','tx','btx']
