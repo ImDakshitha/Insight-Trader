@@ -1,6 +1,8 @@
-# coinalyze
-Grab Futures Market data from coinalyze.com API
+# Insight-Trader
+A python based API development platform to grab, manipulate and back test Cryptocurrency futures markets.
 
+
+Script 1.
 Grab BINANCE futers perp. data history for any desired candlestic time for last 30 days.
 
 Data include
