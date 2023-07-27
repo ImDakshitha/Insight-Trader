@@ -35,8 +35,8 @@ symbol= "BTCUSDT_PERP.A"
 interval="5min"
 # ***** coinalyze holds only the last 30 days data****
 # so this st and et shold be within one month from the date execute this code
-st=(datetime.datetime(2023, 6, 17, 0, 0))
-et=(datetime.datetime(2023, 7, 16, 0, 0))
+st=(datetime.datetime(2023, 7, 17, 0, 0))
+et=(datetime.datetime(2023, 7, 27, 0, 0))
 
 startTime=str(int(st.timestamp()))
 endTime=str(int(et.timestamp()))
