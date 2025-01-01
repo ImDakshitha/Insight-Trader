@@ -8,10 +8,10 @@ Grab BINANCE futers perp. data history for any desired candlestic time for last 
 
 Data include
 
-1.Open Interest History
+1. Open Interest History
 
-2.Liquidations History
+2. Liquidations History
 
-3.Funding Rate History
+3. Funding Rate History
 
 This script creates a separate .csv file in a desired location with all the data including timestamp price OHLC.
