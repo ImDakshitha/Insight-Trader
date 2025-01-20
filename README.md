@@ -1,5 +1,5 @@
 # Insight-Trader
-A python based API development platform to grab, manipulate and back test Cryptocurrency futures markets.
+A python based app to grab, manipulate and back test financial data from Cryptocurrency futures markets.
 
 
 Script 1.
